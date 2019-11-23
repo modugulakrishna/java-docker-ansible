@@ -5,7 +5,7 @@
 	<groupId>com.mt</groupId>
 	<artifactId>java-web-app</artifactId>
 	<packaging>war</packaging>
-	<version>1.0</version>
+	<version>release</version>
 	
 	<name>Maven Web Application</name>
 	<url>http://mithuntechnologies.com</url>
@@ -23,6 +23,9 @@
 		<spring.version>5.0.7.RELEASE</spring.version>
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
+		<sonar.host.url>http://192.168.0.116:9000/</sonar.host.url>
+                <sonar.login>002ba001074fdf890b89128d9ae85aa243713d11</sonar.login>
+                <!-- <sonar.password>admin</sonar.password> -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -98,21 +101,32 @@
 
 	</dependencies>
 	
-	<!-- <distributionManagement>
+	 <distributionManagement>
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://13.235.8.113:8081/repository/flipkart-release/</url>
+	      <url>http://192.168.0.109:8081/repository/java-web-docker-release/</url>
 	    </repository>
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://13.235.8.113:8081/repository/flipkart-snapshot/</url>
+	      <url>http://192.168.0.109:8081/repository/java-web-docker-snapshot/</url>
 	    </snapshotRepository>
-	</distributionManagement> -->
+	</distributionManagement> 
 	
 	<build>
 		<plugins>
+			<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+    					<artifactId>tomcat7-maven-plugin</artifactId>
+    					<version>2.2</version>		
+					<configuration>
+					<url>http://192.168.0.121:8080/manager/test</url>
+					<server>tomcat</server>
+					<path>/webapps</path>
+				</configuration>
+			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
