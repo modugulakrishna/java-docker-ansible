@@ -23,7 +23,7 @@
 		<spring.version>5.0.7.RELEASE</spring.version>
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://192.168.0.116:9000/</sonar.host.url>
+		<sonar.host.url>http://192.168.0.125:9000/</sonar.host.url>
                 <sonar.login>002ba001074fdf890b89128d9ae85aa243713d11</sonar.login>
                 <!-- <sonar.password>admin</sonar.password> -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -105,12 +105,12 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://192.168.0.109:8081/repository/java-web-docker-release/</url>
+	      <url>http://192.168.0.126:8081/repository/java-web-docker-release/</url>
 	    </repository>
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://192.168.0.109:8081/repository/java-web-docker-snapshot/</url>
+	      <url>http://192.168.0.126:8081/repository/java-web-docker-snapshot/</url>
 	    </snapshotRepository>
 	</distributionManagement> 
 	
