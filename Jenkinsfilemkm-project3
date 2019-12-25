@@ -1,0 +1,32 @@
+ node
+{
+    def MavenHome = tool name: "Maven"
+    stage('Git-Checkout') {
+        git credentialsId: 'GitHub_Cre', url: 'https://github.com/modugulakrishna/java-web-app-docker.git'
+    }
+
+    stage('Maven_Clean_Package') {
+        sh "${MavenHome}/bin/mvn clean package"
+}
+    stage(‘Codequality_with_sonar’) {
+        sh “${MavenHome}/bin/mvn sonar:sonar”
+}
+
+    stage('ansible-dockerhub-dockerserver'){
+    sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd /opt/docker
+    docker build -t mkm_demo .
+    docker tag mkm_demo modugulakrishna99/mkm_demo
+    docker push modugulakrishna99/mkm_demo
+    docker rmi modugulakrishna99/mkm_demo
+    ansible-playbook docker_container.yml''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+
+
+
+
+    }
+}
+    stage ('Sending-email-alerts') {
+        emailext attachLog: true, body: '''with regards
+        M.krishnaMohan''', compressLog: true, subject: 'Mithun_technologies project1', to: 'modugulakrishna99@gmail.com'
+    }
+}
