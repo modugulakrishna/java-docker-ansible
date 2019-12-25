@@ -1,0 +1,44 @@
+node
+{
+    def MavenHome = tool name: "maven"
+    stage('Git-Checkout') {
+        git credentialsId: 'GitHub_Cre', url: 'https://github.com/modugulakrishna/java-web-app-docker.git'
+    }
+    stage('Maven-Clean-Package') {
+        sh "${MavenHome}/bin/mvn clean package"
+    }
+    
+    stage('Code-Quality-with-sonar') {
+        sh "${MavenHome}/bin/mvn sonar:sonar"
+    }
+    
+    stage('Artifacts-to-nexus') {
+        sh "${MavenHome}/bin/mvn deploy"
+    }
+    
+    stage('DeploytoTomcat') {
+        sshagent(['tomcat-deploy']) {
+        sh "scp -o StrictHostKeyChecking=no target/*.war ubuntu@13.233.154.145:/opt/apache-tomcat-9.0.27/webapps"
+}
+    }
+    
+    stage('Create-dockerImage') {
+        sh "docker build . -t modugulakrishna99/java-docker-swarm:latest"
+    }
+    
+    stage('Push-to-DockerHub') {
+        withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerHubPwd')]) {
+        sh "docker login -u modugulakrishna99 -p ${dockerHubPwd}"
+}       
+        sh "docker push modugulakrishna99/java-docker-swarm:latest"
+    }
+    
+    stage('Docker-swarm-cluster') {
+        
+        sshagent(['docker-server']) {
+}       
+        sh "ssh -o StrictHostKeyChecking=no ubuntu@52.66.238.242 docker service create --name swarmjava --replicas 12 modugulakrishna99/java-docker-swarm:latest"
+
+    }
+    
+}
