@@ -5,7 +5,7 @@
 	<groupId>com.mt</groupId>
 	<artifactId>java-docker-ansible</artifactId>
 	<packaging>war</packaging>
-	<version>release-001</version>
+	<version>release-01</version>
 	
 	<name>Mithun-3rd-project</name>
 	<url>http://mithuntechnologies.com</url>
