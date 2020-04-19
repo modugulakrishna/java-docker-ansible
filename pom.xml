@@ -5,7 +5,7 @@
 	<groupId>com.mt</groupId>
 	<artifactId>java-web-app</artifactId>
 	<packaging>war</packaging>
-	<version>release</version>
+	<version>release-05</version>
 	
 	<name>Maven-Web- Application</name>
 	<url>http://mithuntechnologies.com</url>
@@ -23,7 +23,7 @@
 		<spring.version>5.0.7.RELEASE</spring.version>
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://52.66.213.43:9000/</sonar.host.url>
+		<sonar.host.url>http://52.66.201.245:9000/</sonar.host.url>
                 <sonar.login>0c004b65233585a92164d25d28631689139783ea</sonar.login>
                 <!-- <sonar.password>admin</sonar.password> -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -105,12 +105,12 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://52.66.244.110:8081/repository/java-web-app-docker/</url>
+	      <url>http://15.206.157.240:8081/repository/java-webapp-docker/</url>
 	    </repository>
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://52.66.244.110:8081/repository/java-docker-snapshot/</url>
+	      <url>http://15.206.157.240:8081/repository/java-webapp-docker-snapshot/</url>
 	    </snapshotRepository>
 	</distributionManagement> 
 	
