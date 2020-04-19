@@ -1,0 +1,2 @@
+FROM jboss/wildfly
+ADD target/java-web-app.war /opt/wildfly/standalone/deployments/
