@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: sudo
+  remote_user: ansible
+  tasks:
+    - name: download from dockerhub
+      shell: docker pull modgulakrishna99/java-docker-ansible:1.0
+
+    - name: create and run the container
+      shell: docker run -d --name mkm_ansible -p 9010:8080 modugulakrishna99/java-docker-ansible:1.0
+...
