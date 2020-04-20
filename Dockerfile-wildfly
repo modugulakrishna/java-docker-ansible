@@ -1,2 +1,2 @@
 FROM jboss/wildfly
-ADD target/java-web-app.war /opt/wildfly/standalone/deployments/
+ADD target/java-docker-ansible-release-01 /opt/wildfly/standalone/deployments/java-docker-ansible-release-01
